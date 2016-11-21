@@ -48,7 +48,7 @@ class Recipe(models.Model):
 
 class Post(models.Model):
     # title = models.CharField(max_length=50)
-    text  = models.CharField(max_length=200)
+    text  = models.CharField(max_length=200,blank=True,null=True,default="")
     image = models.ImageField(
         upload_to='static/posts',
         verbose_name='image',
@@ -71,6 +71,7 @@ class Post(models.Model):
         if self.created:
             now = datetime.datetime.utcnow().replace(tzinfo=utc)
             timediff = now - self.created
+            print timediff.total_seconds()
             return timediff.total_seconds()
 
 

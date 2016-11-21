@@ -229,12 +229,10 @@ input[type="search"]:focus,{
 }
 
 .fb-rside{
-	background-color: #f5f5f5;
+	background-color: white;
     border: 1px solid gainsboro;
-    position: fixed;
-    width: 23%;
     height: auto;
-    padding: 1%;
+    padding: 3%;
 }
 
 .fb-rside #tabs .list-inline >li >label{
@@ -317,12 +315,28 @@ input[type="search"]:focus,{
 	padding-right: 5px;
 }
 
-.lang{
-	margin-top: 38%;
-    margin-left: 15px;
-}
-
 
 .post-img img {
     max-width: 100%;
+}
+
+
+.fb-rside-lang{
+    border: 1px solid gainsboro;
+    margin-top: 2%;
+    background-color: white;
+    padding: 3px;
+}
+
+
+.fixed_div{
+    position: fixed;
+    width: 25%;
+}
+
+
+.lang-p{
+    font-size: 12px;
+    color: gray;
+    padding: 1px;
 }
