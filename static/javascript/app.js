@@ -126,7 +126,8 @@ app.controller('AppController', ['$http','$scope','$window', function($http, $sc
               jqXHR.setRequestHeader('X-CSRFToken', $('input[name=csrfmiddlewaretoken]').val());
             },
             success: function(data, textStatus, jqXHR) {
-              $('#myModal').find('textarea,input').val('');
+              $('#myModal').find('textarea,input[type="file"]').val('');
+              console.log($scope.text)
               $('#myModal').modal('hide');
               $scope.get_post();
             }
