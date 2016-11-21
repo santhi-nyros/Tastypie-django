@@ -1,0 +1,377 @@
+{% load staticfiles %}
+<html ng-app="myApp">
+<head>
+<title>Facebook</title>
+<link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.2/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="{% static '/css/style.css' %}">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-animate.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-touch.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.10.3/TweenMax.min.js"></script>
+
+<script src="{% static '/javascript/app.js' %}"></script>
+
+</head>
+
+<body ng-controller="AppController">
+<header>
+   <nav class="nav navbar-default navbar-fixed-top">
+    <div class="container">
+      <!-- <div class="navbar-header"> -->
+       <div class="row">
+        <div class="col-sm-1">
+        <div class="f-img">
+        <a href="#"><img src="{% static '/images/FB.png' %}" width="20px" height="20px"></a>
+        </div>
+        </div>
+
+        <div class="col-sm-4">
+
+          <form class="navbar-form" role="search">
+            <div class="searchbox">
+            <input type="search" placeholder="Find Friends ">
+              <a href="#" ><span class="glyphicon glyphicon-search"></span></a>
+            </div>
+          </form>
+        </div>
+         <div class="col-sm-1">
+        </div>
+
+        <div class="col-sm-6">
+         <ul class="nav navbar-nav ">
+          <li>
+            <a href="#" class="text-style lspace"><img src="{% static '/images/baby.jpeg' %}" width="20px" height="20px">User</a>
+          </li>
+          <li>
+             <a href="#" class="text-style">Home</a>
+          </li>
+          <li>
+             <a href="#" class="text-style">Find Friends</a>
+          </li>
+          </ul>
+          <ul class="nav navbar-nav  ">
+          <li>
+             <a href="#" class="lspace"><img src="{% static '/images/users.png' %}" width="20px" height="20px"></a>
+          </li>
+          <li>
+             <a href="#" class="rspace"><img src="{% static '/images/msg.png' %}" width="20px" height="20px"></a>
+          </li>
+          <li>
+             <a href="#" class="rspace"><img src="{% static '/images/world.png' %}" width="20px" height="20px"></a>
+          </li>
+          </ul >
+          <ul class="nav navbar-nav navbar-right ">
+           <li>
+             <a href="#"><img src="{% static '/images/padlock.png' %}" width="15px" height="15px"></a>
+          </li>
+           <li>
+             <a href="#"><img src="{% static '/images/down.png' %}" width="15px" height="15px"></a>
+          </li>
+
+          </ul>
+        </div>
+        <!-- <div class="col-sm-1">
+        </div> -->
+      </div>
+
+
+     <!-- </div> -->
+    </div>
+   </nav>
+  </header>
+<section>
+<div class="container" >
+<div class="row">
+<div class="col-md-3">
+   <div class="row" >
+      <div class="col-sm-2" ></div>
+
+      <div class="col-sm-10">
+        <div>
+          <ul class="fb-side-ul">
+            <li><img src="{% static '/images/baby.jpeg' %}" width="20px" height="20px">   User</li>
+            <li><img src="{% static '/images/edit.png' %}">   Edit Profile</li>
+          </ul>
+        </div>
+        <div class="">
+          <label class="fb-side-label fb-side">FAVOURITES</label>
+          <ul class="fb-side-ul">
+            <li><img src="{% static '/images/news.png' %}">   News Feed</li>
+            <li><img src="{% static '/images/msgs.png' %}">   Messages</li>
+            <li><img src="{% static '/images/event.png' %}">   Events</li>
+            <li><img src="{% static '/images/bag.png' %}">   Shops</li>
+            <li><img src="{% static '/images/tag.png' %}">   Buy and sell groups</li>
+          </ul>
+        </div>
+        <div>
+          <label class="fb-side-label fb-side">APPS</label>
+          <ul class="fb-side-ul">
+            <li><img src="{% static '/images/game.png' %}">   Games</li>
+            <li><img src="{% static '/images/time.png' %}">   On this Day</li>
+            <li><img src="{% static '/images/offer.png' %}">   Offers</li>
+            <li><img src="{% static '/images/sedit.png' %}">   Suggest Edits</li>
+            <li><img src="{% static '/images/photo.png' %}">   Photos</li>
+            <li><img src="{% static '/images/ff.png' %}">   Find Friends</li>
+            <li><img src="{% static '/images/poke.png' %}">   Pokes</li>
+          </ul>
+        </div>
+        <div>
+          <label class="fb-side-label fb-side">PAGES</label>
+          <ul class="fb-side-ul">
+            <li><img src="{% static '/images/pf.png' %}">   Pages feed</li>
+            <li><img src="{% static '/images/flag.png' %}">   Like Pages</li>
+            <li><img src="{% static '/images/cp.png' %}">  Create Page</li>
+          </ul>
+        </div>
+        <div>
+          <label class="fb-side-label fb-side">GROUPS</label>
+          <ul class="fb-side-ul">
+            <li><img src="{% static '/images/dg.png' %}">   Discover Groups</li>
+            <li><img src="{% static '/images/cg.png' %}">   Create group</li>
+          </ul>
+        </div>
+        <div>
+          <label class="fb-side-label fb-side">EVENTS</label>
+          <ul class="fb-side-ul">
+            <li><img src="{% static '/images/ce.png' %}">   Create Event</li>
+          </ul>
+        </div>
+        <div>
+          <label class="fb-side-label fb-side">PAYMENTS</label>
+          <ul class="fb-side-ul">
+            <li><img src="{% static '/images/ph.png' %}">   Payment history</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+</div>
+<div class="col-md-6 panel-width">
+<div class="panel panel-default" data-toggle="modal" data-target="#myModal">
+  <div class="panel-heading">
+    <div class="row" >
+        <div class="col-sm-1">
+            <img src="{% static '/images/baby.jpeg' %}" width="40" height="40">
+        </div>
+        <div class="col-sm-11">
+            <span class="post-text text-center">What's on your mind?</span>
+        </div>
+    </div>
+  </div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-sm-6">
+        <span class="label label-default label-style"><img src="{% static '/images/image.png' %}" width="20px" height="20px"/>Images</span>
+      </div>
+      <div class="col-sm-6">
+        <span class="label label-default label-style"><img src="{% static '/images/video.png' %}" width="20px" height="20px"/>Videos</span>
+      </div>
+    </div>
+  </div>
+  <div class="panel-footer">
+    <button type="button" class="btn btn-default " >Post</button>
+  </div>
+</div>
+<!-- <div infinite-scroll='' infinite-scroll-distance='2'> -->
+<div class="panel" ng-repeat="post in data | limitTo:totalDisplayed" id="span" >
+  <div class="well row">
+    <p>{[{ post.text }]}</p>
+    <div class="post-img">
+        <img src="{[{ post.image }]}" ng-if="post.image!= 'undefined' ">
+    </div>
+    <div>
+      <video width="320" height="240" controls ng-if="post.video != 'undefined'">
+        <source src="{[{ post.video }]}" type="video/mp4">
+        <source src="{[{ post.video }]}" type="video/ogg">
+      Your browser does not support the video tag.
+      </video>
+    </div>
+  </div>
+  <div class="panel-footer clearfix">
+      <p class="pull-right">Posted on {[{ post.created }]}</p>
+  </div>
+</div>
+<!-- <div ng-click="get_post()" id="scroll-to">loadmore</div> -->
+<!-- </div> -->
+
+</div>
+<div class="col-md-3">
+  <div class="row" >
+  <div class="col-sm-10 fb-rside ">
+    <div id="tabs" >
+      <ul class="list-inline ">
+        <li><label>TRENDING</label></li>
+        <li ng-repeat="tab in tabs"
+            ng-class="{ractive:isActiveTab(tab.url)}"
+            ng-click="onClickTab(tab)"><img src={[{tab.title}]} /></li>
+      </ul>
+      <div id="mainView">
+          <div ng-include="currentTab"></div>
+      </div>
+    </div>
+    <hr>
+    <div>
+      <label class="fb-side-label">SUGGESTED PAGES</label>
+      <div class="slider">
+      <div ng-repeat="slide in slides" class="slide slide-animation nonDraggableImage"
+         ng-swipe-right="nextSlide()" ng-swipe-left="prevSlide()"
+         ng-hide="!isCurrentSlideIndex($index)" >
+         <img ng-src="{[{slide.image}]}">
+         <a href="#">{[{ slide.description}]}</a>
+         <p class="slide-text">{[{ slide.text }]}</p>
+      </div>
+      <button class="like-btn" ><img ng-src="{% static '/images/like.png'%}"  class="like-img">Like Page</button>
+      <a class="arrow prev" href="#" ng-click="nextSlide()"></a>
+      <a class="arrow next" href="#" ng-click="prevSlide()"></a>
+      </div>
+    </div>
+  </div>
+  <!-- <div class="row" >
+  <div class="col-sm-10 fb-rside lang"></div>
+
+  </div> -->
+  </div>
+</div>
+</div>
+</div>
+
+<!-- Modal -->
+<div id="myModal" class="modal fadein" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+  <div class="modal-content">
+    <form method="post" name="postForm" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal">&times;</button>
+    </div>
+      <div class="modal-body">
+        <div class="row">
+            <div class="col-sm-1">
+                <img src="{% static '/images/baby.jpeg' %}" width="30" height="30">
+            </div>
+            <div class="col-sm-11">
+                <textarea class="form-control post-block" placeholder="What's on your mind? " ng-model="text" ></textarea>
+            </div>
+        </div>
+        <hr/>
+        <div class="row">
+            <div class="col-sm-6">
+            <label class="custom-file-image">
+            <img class="file-imgs" src="{% static '/images/image.png' %}" width="20px" height="20px"/>
+             <input type="file" name="file" id="image"  />
+            </label>
+            </div>
+            <div class="col-sm-6">
+            <label class="custom-file-video">
+              <img class="file-imgs" src="{% static '/images/video.png' %}" width="20px" height="20px"/>
+             <input type="file" name="file" id="video" />
+            </label>
+            </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" data-dismiss="modal">Discard post</button>
+        <button class="btn btn-primary" ng-click="postSumbit()" >Post</button>
+      </div>
+    </form>
+  </div>
+  </div>
+</div>
+</section>
+</body>
+<script type="text/ng-template" id="one.tpl.html">
+    <div id="viewOne">
+      <div>
+        <img src="{% static 'images/arrow.png'%}">
+        <a href="#">India Women's Cricket Team</a>
+        <p class="sub-text">1.1k people talking about this</p>
+      </div>
+      <div>
+        <img src="{% static 'images/arrow.png'%}">
+        <a href="#">Barack Obama and Joe Biden</a>
+        <p class="sub-text">680k people talking about this</p>
+      </div>
+      <div>
+        <img src="{% static 'images/arrow.png'%}">
+        <a href="#">Microsoft</a>
+        <p class="sub-text">500k people talking about this</p>
+      </div>
+      <div>
+        <img src="{% static 'images/arrow.png'%}">
+        <a href="#">Nitish Kumar</a>
+        <p class="sub-text">8.1k people talking about this</p>
+      </div>
+      <div>
+        <img src="{% static 'images/arrow.png'%}">
+        <a href="#">Reddit</a>
+        <p class="sub-text">490k people talking about this</p>
+      </div>
+      <div>
+        <img src="{% static 'images/arrow.png'%}">
+        <a href="#">Temecula, California</a>
+        <p class="sub-text">26k people talking about this</p>
+      </div>
+      <div>
+        <img src="{% static 'images/arrow.png'%}">
+        <a href="#">Jimmy Fallon</a>
+        <p class="sub-text">110k people talking about this</p>
+      </div>
+    </div>
+  </script>
+
+  <script type="text/ng-template" id="two.tpl.html">
+    <div id="viewTwo">
+      <div>
+        <img src="{% static 'images/arrow.png'%}">
+        <a href="#">Nitish Kumar</a>
+        <p class="sub-text">8.1k people talking about this</p>
+      </div>
+      <div>
+        <img src="{% static 'images/arrow.png'%}">
+        <a href="#">Manohar Parrikar</a>
+        <p class="sub-text">12k people talking about this</p>
+      </div>
+    </div>
+  </script>
+
+  <script type="text/ng-template" id="three.tpl.html">
+    <div id="viewThree">
+      <div>
+        <img src="{% static 'images/arrow.png'%}">
+        <a href="#">Microsoft</a>
+        <p class="sub-text">500k people talking about this</p>
+      </div>
+      <div>
+        <img src="{% static 'images/arrow.png'%}">
+        <a href="#">Reddit</a>
+        <p class="sub-text">490k people talking about this</p>
+      </div>
+    </div>
+  </script>
+
+  <script type="text/ng-template" id="four.tpl.html">
+    <div id="viewThree">
+      <div>
+        <img src="{% static 'images/arrow.png'%}">
+        <a href="#">India Women's Cricket Team</a>
+        <p class="sub-text">1.1k people talking about this</p>
+      </div>
+    </div>
+  </script>
+
+  <script type="text/ng-template" id="five.tpl.html">
+    <div id="viewThree">
+      <div>
+        <img src="{% static 'images/arrow.png'%}">
+        <a href="#">Jimmy Fallon</a>
+        <p class="sub-text">110k people talking about this</p>
+      </div>
+    </div>
+  </script>
+
+</html>
+
+
+

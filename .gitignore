@@ -1,0 +1,17 @@
+.DS_Store
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+.sqlite3
+.idea
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+
+*.env
+
+logs/*.log
+
+
