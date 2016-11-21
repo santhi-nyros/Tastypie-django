@@ -7,4 +7,4 @@ heroku ps:scale web=1
 /Applications
 /Applications/Firefox.app
 
-celery: python manage.py celeryd --events --loglevel=INFO -c 5 --settings=settings -B
+
