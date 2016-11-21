@@ -321,3 +321,8 @@ input[type="search"]:focus,{
 	margin-top: 38%;
     margin-left: 15px;
 }
+
+
+.post-img img {
+    max-width: 100%;
+}
