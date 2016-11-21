@@ -128,7 +128,8 @@ app.controller('AppController', ['$http','$scope','$window', function($http, $sc
             success: function(data, textStatus, jqXHR) {
               $('#myModal').find('input[type="file"]').val('');
               $('#myModal').find('textarea').val('');
-              console.log($scope.text)
+              $scope.text =''
+
               $('#myModal').modal('hide');
               $scope.get_post();
             }
