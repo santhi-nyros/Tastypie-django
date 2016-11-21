@@ -1,0 +1,10 @@
+Django==1.10.3
+Pillow==3.4.2
+argparse==1.2.1
+dj-database-url==0.4.1
+django-tastypie==0.13.3
+gunicorn==19.6.0
+psycopg2==2.6.2
+python-dateutil==1.5
+python-mimeparse==1.6.0
+wsgiref==0.1.2
