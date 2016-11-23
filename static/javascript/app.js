@@ -45,7 +45,7 @@ app.controller('AppController', ['$http','$scope','$window', function($http, $sc
         {
           var minutes = (now - new Date(actionDate+'Z')) / (1000 * 60);
           minutes = Math.floor(minutes)
-          if(minutes == 0){
+          if(minutes <= 0){
             return "now"
           }
           else{
