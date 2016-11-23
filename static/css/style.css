@@ -345,6 +345,7 @@ input[type="search"]:focus,{
 .lang-p a{
     color: gray;
     padding-top: 2px;
+    padding-left: 10px;
 }
 
 

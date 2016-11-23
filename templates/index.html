@@ -188,7 +188,7 @@
   </div>
    </div>
   <div class="well row">
-    <p>{[{ post.text }]}</p>
+    <p ng-if="post.text!= 'undefined' ">{[{ post.text }]}</p>
     <div class="post-img">
         <img src="{[{ post.image }]}" ng-if="post.image!= 'undefined' ">
     </div>
@@ -201,12 +201,19 @@
     </div>
   </div>
   <hr>
+  <div class="lang-p back-color">
+      <a href="" class="post-info"><img ng-src="{% static '/images/like.png'%}">Likes</a>
+      <a href="" class="post-info"><img ng-src="{% static '/images/chat.png'%}">Comments</a>
+      <a href="" class="post-info"><img ng-src="{% static '/images/share.png'%}">Share</a>
+  </div>
   <div class="panel-footer back-color">
-      <div class="lang-p">
+    <!-- <div class="lang-p">
       <a href="" class="post-info"><img ng-src="{% static '/images/like.png'%}">Likes</a>
       <a href="" class="post-info"><img ng-src="{% static '/images/chat.png'%}">Comments</a>
       <a href="" class="post-info"><img ng-src="{% static '/images/share.png'%}">Share</a>
     </div>
+    <hr> -->
+    <div class="lang-p"></div>
   </div>
 </div>
 
