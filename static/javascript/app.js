@@ -29,27 +29,62 @@ app.directive('whenscrollends', function() {
 
 app.controller('AppController', ['$http','$scope','$window', function($http, $scope){
   var data = [];
-  $scope.totalDisplayed = 0
+
+  $scope.getHours = function(actionDate)
+  {
+
+      var now = new Date();
+      var now = new Date(now.toUTCString());
+      // console.log(new Date(actionDate));
+      // console.log(now)
+      console.log(now+","+ new Date(actionDate));
+      console.log(now - new Date(actionDate))
+      var days = parseInt(Math.abs(now - new Date(actionDate)) / (1000 * 60 * 60 * 24));
+      // console.log(days)
+      // return days
+      if(days == 0)
+      {
+        var hours = parseInt(Math.abs(now - new Date(actionDate)) / (1000 * 60 * 60));
+        // console.log(hours)
+        if(hours == 0)
+        {
+          var minutes = (now - new Date(actionDate)) / (1000 * 60);
+          if(minutes <= 0){
+            return "now"
+          }
+          else{
+            return Math.floor(minutes) +" mins";
+          }
+        }
+        else
+        {
+          return hours + " hrs ago";
+        }
+      }
+      else
+        return days + " day(s) ago";
+      };
+
+
+    $scope.totalDisplayed = 0
     $scope.get_post = function() {
+       $http.get('/api/v1/posts/').then(function(response) {
+            $scope.posts = response.data.objects
+            var count = $scope.posts.length;
 
-           $http.get('/api/v1/posts/').then(function(response) {
-                $scope.posts = response.data.objects
-                var count = $scope.posts.length;
+            while(count) {
+              data[count] = count--;
+            }
+            $scope.totalDisplayed += 4;
 
-                while(count) {
-                  data[count] = count--;
-                }
-                  // $scope.totalDisplayed = 4;
-
-
-                  $scope.totalDisplayed += 4;
-
-
-                $scope.data = $scope.posts;
-
-                // return (response);
-            });
-        };
+            for(var i=0;i<$scope.posts.length;i++){
+              var time = $scope.getHours($scope.posts[i]['created'])
+              console.log(time)
+              $scope.posts[i]['time'] = time;
+            }
+            $scope.data = $scope.posts;
+        });
+    };
 
     $scope.get_post();
 
@@ -63,7 +98,6 @@ app.controller('AppController', ['$http','$scope','$window', function($http, $sc
           var windowBottom = windowHeight + window.pageYOffset;
           if (windowBottom >= docHeight) {
             // alert('bottom reached');
-
               $scope.get_post();
           }
     }
@@ -170,6 +204,9 @@ app.controller('AppController', ['$http','$scope','$window', function($http, $sc
             $scope.direction = 'right';
             $scope.currentIndex = ($scope.currentIndex > 0) ? --$scope.currentIndex : $scope.slides.length - 1;
         };
+
+
+
 
 }]);
 

@@ -326,6 +326,7 @@ input[type="search"]:focus,{
     margin-top: 2%;
     background-color: white;
     padding: 3px;
+    margin-bottom: 3%;
 }
 
 
@@ -339,4 +340,26 @@ input[type="search"]:focus,{
     font-size: 12px;
     color: gray;
     padding: 1px;
+}
+
+.lang-p a{
+    color: gray;
+    padding-top: 2px;
+}
+
+
+.post-info{
+    padding-right: 30px;
+
+    /*padding-left: 20px;*/
+}
+
+.post_time{
+    color: gray;
+    font-size: 11px;
+    line-height: 30px;
+}
+
+.back-color{
+    background-color: white;
 }

@@ -175,6 +175,18 @@
 </div>
 <!-- <div infinite-scroll='' infinite-scroll-distance='2'> -->
 <div class="panel" ng-repeat="post in data | limitTo:totalDisplayed" id="span" >
+   <div class="panel-header clearfix">
+     <div class="panel-heading">
+    <div class="row" >
+        <div class="col-sm-1">
+            <img src="{% static '/images/baby.jpeg' %}" width="30" height="30">
+        </div>
+        <div class="col-sm-11">
+          <span class="post_time">{[{ post.time }]}</span>
+        </div>
+    </div>
+  </div>
+   </div>
   <div class="well row">
     <p>{[{ post.text }]}</p>
     <div class="post-img">
@@ -188,12 +200,16 @@
       </video>
     </div>
   </div>
-  <div class="panel-footer clearfix">
-      <p class="pull-right">Posted on {[{ post.created }]}</p>
+  <hr>
+  <div class="panel-footer back-color">
+      <div class="lang-p">
+      <a href="" class="post-info"><img ng-src="{% static '/images/like.png'%}">Likes</a>
+      <a href="" class="post-info"><img ng-src="{% static '/images/chat.png'%}">Comments</a>
+      <a href="" class="post-info"><img ng-src="{% static '/images/share.png'%}">Share</a>
+    </div>
   </div>
 </div>
-<!-- <div ng-click="get_post()" id="scroll-to">loadmore</div> -->
-<!-- </div> -->
+
 
 </div>
 <div class="col-md-3">
@@ -236,6 +252,10 @@
       </div>
       <div class="col-sm-3"><button style="float:right; height:30px;" ><img src="{% static '/images/add.png'%}"></button></div>
       </div>
+    </div>
+    <div style="width:83%;">
+      <p class="lang-p"> <a href="" > Privacy</a> ·<a href=""> Terms </a>·<a href="">Advertising </a> ·<a href=""> AdChoices </a>·<a href=""> Cookies </a>·<a href=""> More</a></p>
+      <p class="lang-p">Facebook © 2016</p>
     </div>
   </div>
   </div>
