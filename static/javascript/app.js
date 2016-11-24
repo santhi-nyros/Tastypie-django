@@ -29,13 +29,16 @@ app.directive('whenscrollends', function() {
 
 app.controller('AppController', ['$http','$scope','$window', function($http, $scope){
   var data = [];
+  $scope.flags = {};
+  // $scope.comment_txt = '';
+  // $scope.showDetails/ = true;
 
+
+//converting to datetime into time
   $scope.getHours = function(actionDate)
   {
 
       var now = new Date();
-      // console.log(new Date(actionDate+'Z'));
-      // console.log(now)
       var days = parseInt(Math.abs(now - new Date(actionDate+'Z')) / (1000 * 60 * 60 * 24));
       if(days == 0)
       {
@@ -59,9 +62,11 @@ app.controller('AppController', ['$http','$scope','$window', function($http, $sc
       }
       else
         return days + " day(s) ago";
-      };
+  };
 
 
+
+// get method for posts data
     $scope.totalDisplayed = 0
     $scope.get_post = function() {
        $http.get('/api/v1/posts/').then(function(response) {
@@ -74,9 +79,12 @@ app.controller('AppController', ['$http','$scope','$window', function($http, $sc
             $scope.totalDisplayed += 4;
 
             for(var i=0;i<$scope.posts.length;i++){
+              // get time
               var time = $scope.getHours($scope.posts[i]['created'])
-              // console.log(time)
               $scope.posts[i]['time'] = time;
+              //end
+
+
             }
             $scope.data = $scope.posts;
         });
@@ -84,6 +92,8 @@ app.controller('AppController', ['$http','$scope','$window', function($http, $sc
 
     $scope.get_post();
 
+
+// data loading on scorlling
     function loadmore() {
       var windowHeight = "innerHeight" in window ? window.innerHeight
               : document.documentElement.offsetHeight;
@@ -103,7 +113,7 @@ app.controller('AppController', ['$http','$scope','$window', function($http, $sc
     });
 
 
-    //tabs
+//tabs
       $scope.tabs = [{
            title: "static/images/stats.png",
             url: 'one.tpl.html'
@@ -133,7 +143,15 @@ app.controller('AppController', ['$http','$scope','$window', function($http, $sc
         return tabUrl == $scope.currentTab;
     }
 
+    $scope.get_comments = function(post){
+      $scope.flags[post.id] = !$scope.flags[post.id];
+      if ($scope.flags[post.id] == true){
+        $scope.getComments(post);
+      }
 
+    }
+
+// saving posts
     $scope.postSumbit = function(){
        $scope.image = $("#image").prop("files")[0]
        $scope.video = $("#video").prop("files")[0]
@@ -201,7 +219,33 @@ app.controller('AppController', ['$http','$scope','$window', function($http, $sc
             $scope.currentIndex = ($scope.currentIndex > 0) ? --$scope.currentIndex : $scope.slides.length - 1;
         };
 
+// get and post method of comments
+      $scope.getComments = function(post){
+        var url = '/api/v1/posts/'+post.id+'/get_comments/'
+         $http.get(url).then(function(response) {
+            $scope.comments = response.data.objects
+            // console.log($scope.comments);
+        });
 
+      }
+
+      $scope.postComment = function(post,comment){
+        var postData = {'post_id':post,'comment':comment}
+        $.ajax({
+            url: '/api/v1/comments/',
+            type: "POST",
+            data : JSON.stringify(postData),
+            processData: false,
+            contentType: 'application/json',
+            beforeSend: function(jqXHR, settings) {
+              jqXHR.setRequestHeader('X-CSRFToken', $('input[name=csrfmiddlewaretoken]').val());
+            },
+            success: function(data, textStatus, jqXHR) {
+              $('.myComment').find('input[type="text"]').val('');
+              $scope.getComments(post);
+            }
+          });
+      }
 
 
 }]);

@@ -35,11 +35,7 @@ body{
 
 }
 
-.well{
-	background-color: white;
-	border: none;
-    /*border-radius: 4px;*/
-}
+
 
 .custom-file-image {		display: inline-block;		position: relative;		color: #533e00;	}
 .custom-file-image input {		visibility: hidden;		width: 120px;	}
@@ -57,8 +53,12 @@ body{
 }
 
 .well{
+    background-color: white;
+    border: none;
 	width: 100%;
-margin-left: 0px;
+    margin-left: 0px;
+    padding-bottom: 10px;
+    margin-bottom: 0px;
 }
 
 .post-img{
@@ -339,7 +339,7 @@ input[type="search"]:focus,{
 .lang-p{
     font-size: 12px;
     color: gray;
-    padding: 1px;
+    padding: 5px;
 }
 
 .lang-p a{
@@ -362,5 +362,17 @@ input[type="search"]:focus,{
 }
 
 .back-color{
+    display: block;
     background-color: white;
+}
+
+
+.fb-hr{
+    margin-bottom: 10px;
+    border-top: 1px solid gainsboro;
+}
+
+
+.back-color.hidden {
+    display: none;
 }

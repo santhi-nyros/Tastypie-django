@@ -1,3 +1,7 @@
+import json
+from django.http import HttpResponse
+from django.core import serializers
+from django.core.serializers.json import DjangoJSONEncoder
 from django.contrib.auth.models import User
 from django.contrib.auth.hashers import make_password
 from django.conf.urls import url, include
@@ -10,7 +14,7 @@ from tastypie.resources import ModelResource
 from tastypie import fields
 from tastypie.serializers import Serializer
 from tastypie.utils import trailing_slash
-from .models import UserProfile,Entry,Recipe,Post
+from .models import UserProfile,Entry,Recipe,Post,Comment
 from .utils import MINIMUM_PASSWORD_LENGTH, validate_password
 from .exceptions import CustomBadRequest
 from .Rserializer import urlencodeSerializer,MultiPartResource
@@ -48,7 +52,7 @@ class UserResource(ModelResource):
 
 
         user = authenticate(username=username, password=password)
-        print user
+        # print user
         if user:
             if user.is_active:
                 login(request, user)
@@ -240,11 +244,6 @@ class UserProfileResource(ModelResource):
 
 
 class EntryResource(ModelResource):
-    # Maps `Entry.user` to a Tastypie `ForeignKey` field named `user`,
-    # which gets serialized using `UserResource`. The first appearance of
-    # 'user' on the next line of code is the Tastypie field name, the 2nd
-    # appearance tells the `ForeignKey` it maps to the `user` attribute of
-    # `Entry`. Field names and model attributes don't have to be the same.
     user = fields.ForeignKey(UserResource, 'user')
 
     class Meta:
@@ -269,6 +268,8 @@ class RecipeResource(ModelResource):
 
             return data_dict
 
+
+
 class PostResource(MultiPartResource,ModelResource):
     image = fields.FileField(attribute="image", null=True, blank=True)
     video = fields.FileField(attribute="video", null=True, blank=True)
@@ -282,9 +283,31 @@ class PostResource(MultiPartResource,ModelResource):
         always_return_data=True
         authorization = Authorization()
 
-        # def test_method(self,request):
-        #         #Do your stuff
-        #         return result
+
+    def prepend_urls(self):
+        return [
+            url(r"^(?P<resource_name>%s)/(?P<pk>.*?)/get_comments%s$" %
+                (self._meta.resource_name, trailing_slash()),
+                self.wrap_view('get_comments'), name="api_get_comments"),
+        ]
+
+    def get_comments(self, request, **kwargs):
+        post = Post.objects.filter(id = kwargs['pk']).first()
+        queryset = post.get_comments()
+        return self.create_response(request, {
+                    'success': True,
+                    'objects':list(queryset)
+        })
 
 
 
+class CommemtResource(ModelResource):
+    post_id = fields.ForeignKey(PostResource, 'post_id')
+
+    class Meta:
+        queryset = Comment.objects.all()
+        resource_name = 'comments'
+        serializer = Serializer(formats=['json'])
+        allowed_methods = ['get','post']
+        always_return_data=True
+        authorization = Authorization()

@@ -4,6 +4,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.utils.text import slugify
 from django.utils.timezone import now,utc
+import json
 # from django.utils.timezone import utc
 # Create your models here.
 class Entry(models.Model):
@@ -48,7 +49,7 @@ class Recipe(models.Model):
 
 class Post(models.Model):
     # title = models.CharField(max_length=50)
-    text  = models.CharField(max_length=200,blank=True,null=True,default="")
+    text  = models.CharField(max_length=200,blank=True,null=True)
     image = models.ImageField(
         upload_to='static/posts',
         verbose_name='image',
@@ -67,15 +68,21 @@ class Post(models.Model):
     def __unicode__(self):
         return self.text
 
-    def get_hours(self):
-        if self.created:
-            now = datetime.datetime.utcnow().replace(tzinfo=utc)
-            timediff = now - self.created
-            print timediff.total_seconds()
-            return timediff.total_seconds()
+
+    def get_comments(self):
+        comments = Comment.objects.filter(post_id=self.id);
+        return comments
 
 
 
+
+class Comment(models.Model):
+    post_id = models.ForeignKey(Post)
+    comment = models.CharField(max_length=500,blank=False,null=False)
+    created = models.DateTimeField(default=now)
+
+    def __unicode__(self):
+        return self.comment
 
 
 

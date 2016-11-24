@@ -27,6 +27,7 @@ v1_api.register(UserProfileResource())
 v1_api.register(EntryResource())
 v1_api.register(RecipeResource())
 v1_api.register(PostResource())
+v1_api.register(CommemtResource())
 
 
 

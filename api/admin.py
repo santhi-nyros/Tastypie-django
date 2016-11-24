@@ -1,5 +1,5 @@
 from django.contrib import admin
-from api.models import Entry,Recipe,UserProfile,Post
+from api.models import Entry,Recipe,UserProfile,Post,Comment
 # Register your models here.
 
 
@@ -28,3 +28,4 @@ admin.site.register(Entry)
 admin.site.register(Recipe)
 admin.site.register(UserProfile,UserProfileAdmin)
 admin.site.register(Post)
+admin.site.register(Comment)
