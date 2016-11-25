@@ -203,10 +203,10 @@
   <hr class="fb-hr">
   <div class="lang-p">
       <a href="" class="post-info"><img ng-src="{% static '/images/like.png'%}">Likes</a>
-      <a href="" class="post-info" ng-click="get_comments(post)"><img ng-src="{% static '/images/chat.png'%}" >Comments</a>
+      <a href="" class="post-info"><img ng-src="{% static '/images/chat.png'%}" >Comments</a>
       <a href="" class="post-info"><img ng-src="{% static '/images/share.png'%}">Share</a>
   </div>
-  <div class="panel-footer back-color" ng-show="flags[post.id]" >
+  <div class="panel-footer back-color" >
     <div class="lang-p">
       <div class="row">
         <div class="col-sm-1">
@@ -216,9 +216,12 @@
         <form ng-submit="postComment(post,comment_txt)" class="myComment" >
           <input type="text" class="form-control " placeholder="Write a comment... " ng-model="comment_txt" />
         </form>
-        <div ng-repeat="comment in comments" ng-if="comments != '' ">
-          <span>{[{ comment }]}</span>
+        <div id="comment_{[{post.id}]}">
+
         </div>
+        <!-- <div ng-repeat="comment in comments" id="post.id"> -->
+          <!-- <span>{[{ comment }]}</span> -->
+        <!-- </div> -->
         </div>
       </div>
     </div>

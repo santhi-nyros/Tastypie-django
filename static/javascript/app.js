@@ -30,6 +30,7 @@ app.directive('whenscrollends', function() {
 app.controller('AppController', ['$http','$scope','$window', function($http, $scope){
   var data = [];
   $scope.flags = {};
+  $scope.comments = '';
   // $scope.comment_txt = '';
   // $scope.showDetails/ = true;
 
@@ -223,7 +224,12 @@ app.controller('AppController', ['$http','$scope','$window', function($http, $sc
       $scope.getComments = function(post){
         var url = '/api/v1/posts/'+post.id+'/get_comments/'
          $http.get(url).then(function(response) {
-            $scope.comments = response.data.objects
+            $scope.comments = response.data.objects;
+            $('#comment_'+post.id).empty();
+            for(var i=0;i<$scope.comments.length;i++){
+              $('#comment_'+post.id).append($scope.comments[i]+"<br>")
+              // $scope.'comment_'+post.id.append()
+            };
             // console.log($scope.comments);
         });
 
@@ -242,12 +248,11 @@ app.controller('AppController', ['$http','$scope','$window', function($http, $sc
             },
             success: function(data, textStatus, jqXHR) {
               $('.myComment').find('input[type="text"]').val('');
+
               $scope.getComments(post);
             }
           });
       }
-
-
 }]);
 
 
