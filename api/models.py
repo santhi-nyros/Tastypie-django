@@ -70,9 +70,9 @@ class Post(models.Model):
 
 
     def get_comments(self):
-        comments = Comment.objects.filter(post_id=self.id);
-        return comments
-
+        comments = Comment.objects.filter(post_id=self.id).order_by('-created');
+        dictionaries = [ obj.as_dict() for obj in comments ]
+        return dictionaries
 
 
 
@@ -84,25 +84,13 @@ class Comment(models.Model):
     def __unicode__(self):
         return self.comment
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    def as_dict(self):
+        return {
+            "id": self.id,
+            "post_id": self.post_id.id,
+            "comment":self.comment,
+            "created":self.created
+        }
 
 
 

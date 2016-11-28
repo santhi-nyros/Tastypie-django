@@ -144,13 +144,13 @@ app.controller('AppController', ['$http','$scope','$window', function($http, $sc
         return tabUrl == $scope.currentTab;
     }
 
-    $scope.get_comments = function(post){
-      $scope.flags[post.id] = !$scope.flags[post.id];
-      if ($scope.flags[post.id] == true){
-        $scope.getComments(post);
-      }
+    // $scope.get_comments = function(post){
+    //   $scope.flags[post.id] = !$scope.flags[post.id];
+    //   if ($scope.flags[post.id] == true){
+    //     $scope.getComments(post);
+    //   }
 
-    }
+    // }
 
 // saving posts
     $scope.postSumbit = function(){
@@ -192,7 +192,7 @@ app.controller('AppController', ['$http','$scope','$window', function($http, $sc
       //slider images
        $scope.slides = [
             {image: '/static/images/slide1.jpg', description: 'Love and relationship quotes',text:'Community · 1,306,171 likes'},
-            {image: '/static/images/slide2.jpg', description: "Your loss, I'm awesome",text:"Community · 665,754 likes"},
+            //{image: '/static/images/slide2.jpg', description: "Your loss, I'm awesome",text:"Community · 665,754 likes"},
             {image: '/static/images/slide3.jpg', description: 'Cute Relationships',text:'Community · 358,062 likes'},
             {image: '/static/images/slide4.png', description: 'Photography From Around The World',text:'Website · 637,251 likes'},
             {image: '/static/images/slide5.jpg', description: 'Wonderful Quotes',text:'Media/news company · 1,255,878 likes'}
@@ -224,20 +224,29 @@ app.controller('AppController', ['$http','$scope','$window', function($http, $sc
       $scope.getComments = function(post){
         var url = '/api/v1/posts/'+post.id+'/get_comments/'
          $http.get(url).then(function(response) {
-            $scope.comments = response.data.objects;
-            $('#comment_'+post.id).empty();
-            for(var i=0;i<$scope.comments.length;i++){
-              $('#comment_'+post.id).append($scope.comments[i]+"<br>")
-              // $scope.'comment_'+post.id.append()
-            };
-            // console.log($scope.comments);
-        });
 
+            $scope.comments = response.data.objects;
+
+            $('#comment_'+post.id).empty();
+
+            for(var i=0;i<$scope.comments.length;i++){
+
+              $scope.post_id = $scope.comments[i].post_id;
+              var time = $scope.getHours($scope.comments[i].created)
+              $scope.comments[i]['time'] = time;
+              if (post.image == 'undefined'){
+                $scope.comments[i]['img'] = 'static/images/default.jpg';
+              }else{
+                $scope.comments[i]['img'] = post.image;
+              }
+            };
+        });
       }
 
       $scope.postComment = function(post,comment){
-        var postData = {'post_id':post,'comment':comment}
-        $.ajax({
+        if(comment != undefined && comment != ''){
+          var postData = {'post_id':post,'comment':comment}
+          $.ajax({
             url: '/api/v1/comments/',
             type: "POST",
             data : JSON.stringify(postData),
@@ -248,10 +257,12 @@ app.controller('AppController', ['$http','$scope','$window', function($http, $sc
             },
             success: function(data, textStatus, jqXHR) {
               $('.myComment').find('input[type="text"]').val('');
-
               $scope.getComments(post);
             }
           });
+        }else{
+          alert("Please text your comment here")
+        }
       }
 }]);
 

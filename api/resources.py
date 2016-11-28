@@ -273,6 +273,7 @@ class RecipeResource(ModelResource):
 class PostResource(MultiPartResource,ModelResource):
     image = fields.FileField(attribute="image", null=True, blank=True)
     video = fields.FileField(attribute="video", null=True, blank=True)
+    # comments = fields.ToManyField(CommentResource, 'comments', full=True)
 
 
     class Meta:
@@ -301,7 +302,7 @@ class PostResource(MultiPartResource,ModelResource):
 
 
 
-class CommemtResource(ModelResource):
+class CommentResource(ModelResource):
     post_id = fields.ForeignKey(PostResource, 'post_id')
 
     class Meta:

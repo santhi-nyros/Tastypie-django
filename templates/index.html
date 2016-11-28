@@ -45,7 +45,7 @@
             <a href="#" class="text-style lspace"><img src="{% static '/images/baby.jpeg' %}" width="20px" height="20px">User</a>
           </li>
           <li>
-             <a href="#" class="text-style">Home</a>
+             <a href="/" class="text-style">Home</a>
           </li>
           <li>
              <a href="#" class="text-style">Find Friends</a>
@@ -203,7 +203,7 @@
   <hr class="fb-hr">
   <div class="lang-p">
       <a href="" class="post-info"><img ng-src="{% static '/images/like.png'%}">Likes</a>
-      <a href="" class="post-info"><img ng-src="{% static '/images/chat.png'%}" >Comments</a>
+      <a href="" class="post-info" ng-click="getComments(post)"><img ng-src="{% static '/images/chat.png'%}" >Comments</a>
       <a href="" class="post-info"><img ng-src="{% static '/images/share.png'%}">Share</a>
   </div>
   <div class="panel-footer back-color" >
@@ -216,12 +216,17 @@
         <form ng-submit="postComment(post,comment_txt)" class="myComment" >
           <input type="text" class="form-control " placeholder="Write a comment... " ng-model="comment_txt" />
         </form>
-        <div id="comment_{[{post.id}]}">
-
+        <div ng-if="post.id == post_id">
+          <div class="row" ng-repeat="comment in comments">
+            <div class="col-sm-1">
+               <img src="{[{comment.img}]}" width="35px" height="35px" style="padding:3px;" alt="no image display" />
+            </div>
+            <div class="col-sm-11">
+              <span class="comment-txt">{[{ comment.comment }]}</span><br>
+              <span class="comment-time">{[{ comment.time }]}</span>
+            </div>
+          </div>
         </div>
-        <!-- <div ng-repeat="comment in comments" id="post.id"> -->
-          <!-- <span>{[{ comment }]}</span> -->
-        <!-- </div> -->
         </div>
       </div>
     </div>
