@@ -1,0 +1,22 @@
+With django-extensions installed you can create a dot-file or an image by using the graph_models command:
+
+
+#For creating database structure image run the below command:
+#o to project floder path and run the command
+$ ./manage.py graph_models -a -g -o my_project_visualized.png
+
+# Create a dot file
+$ ./manage.py graph_models -a > my_project.dot
+
+# Export all the addresses in the '"First Last" <my@addr.com>;' format.
+$ ./manage.py export_emails > addresses.txt
+
+# We will change the format of getting of address ex:Google,Linkedin,vcard,outlook
+# Create a csv file importable by Gmail or Google Docs
+$ ./manage.py export_emails --format=google
+
+# We will create a dump for our models all or individual
+$ ./manage.py dumpscript appname > scripts/testdata.py #for all models
+
+$ ./manage.py dumpscript appname.ModelName > scripts/testdata.py # for particular models
+

@@ -16,14 +16,6 @@ class UserProfileAdmin(admin.ModelAdmin):
 
 
 
-
-
-
-
-
-
-
-
 admin.site.register(Entry)
 admin.site.register(Recipe)
 admin.site.register(UserProfile,UserProfileAdmin)

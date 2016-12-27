@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'api',
     'tastypie',
+    'django_extensions',
 ]
 
 MIDDLEWARE = [
@@ -170,3 +171,9 @@ STATICFILES_DIRS = (
 )
 
 TEMPLATE_ROOT = os.path.join(BASE_DIR, "templates")
+
+
+GRAPH_MODELS = {
+  'all_applications': True,
+  'group_models': True,
+}

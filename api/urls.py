@@ -16,7 +16,7 @@ Including another URLconf
 from django.views.generic import TemplateView
 from django.contrib import admin
 from django.conf.urls import url, include
-from api.views import home
+# from api.views import home
 
 
 urlpatterns = [

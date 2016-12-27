@@ -1,10 +1,37 @@
 "use strict";
 
-var app = angular.module("myApp", ['ngAnimate', 'ngTouch'], function ($interpolateProvider) {
+var app = angular.module("myApp", ['ngAnimate', 'ngTouch','ngRoute'], function ($interpolateProvider) {
         $interpolateProvider.startSymbol("{[{");
         $interpolateProvider.endSymbol("}]}");
     }
 );
+
+
+
+app.config(function ($routeProvider) {
+    $routeProvider
+        .when("/", {
+            templateUrl: "templates/index.html",
+
+        })
+        // .when("/search",{
+        //   templateUrl: "static/js/app/views/car_index.html",
+        //   controller: "searchController",
+
+
+        // })
+        // .when("/seemore",{
+        //   templateUrl: "static/js/app/views/car_index1.html",
+        //   // controller: "CityController",
+
+        // })
+        .otherwise({
+            redirectTo: '/'
+        })
+})
+
+
+
 
 app.directive('whenscrollends', function() {
     return {
