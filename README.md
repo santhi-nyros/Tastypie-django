@@ -1,0 +1,1 @@
+# Tastypie-django
